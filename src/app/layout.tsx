@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     title: "Gist.ai - Find the Gist any Public Internet Article",
     description:
       "Gist.ai allows you to input any publicly available article URL and instantly fetch the title, author, summary, references, metrics, and sentiment analysis. Get insights in seconds.",
-    url: "https://gistai.vercel.app",
+    url: "https://gist-ai-beta.vercel.app/",
     siteName: "Gist.ai",
     images: [],
     locale: "en_US",
     type: "website",
   },
   alternates: {
-    canonical: "https://gistai.vercel.app",
+    canonical: "https://gist-ai-beta.vercel.app/",
   },
 };
 
