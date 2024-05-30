@@ -2,8 +2,6 @@ import { HfInference } from "@huggingface/inference";
 import axios from "axios";
 import * as cheerio from "cheerio";
 
-const HF_TOKEN = "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";
-
 function cleanString(input: string): string {
   return input ? input.trim().replace(/^["'.!,?<]|["'.!,?>]$/g, "") : "None";
 }
@@ -67,7 +65,7 @@ const summarizeText = async (
   title: string,
   content: string
 ): Promise<string> => {
-  const inference = new HfInference(HF_TOKEN);
+  const inference = new HfInference(process.env.NEXT_PUBLIC_HF_TOKEN);
   try {
     const resp = await inference.chatCompletion({
       model: "mistralai/Mistral-7B-Instruct-v0.2",
