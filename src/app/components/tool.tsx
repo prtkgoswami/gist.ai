@@ -56,16 +56,18 @@ export const ToolPage = (): React.ReactElement => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen w-full lg:w-4/5 xl:w-2/3 relative p-20 gap-24">
+    <div className="flex flex-col min-h-screen w-full md:w-4/5 xl:w-2/3 relative p-8 md:p-20 gap-10 md:gap-24">
       {/* Title */}
       <div className="flex flex-col gap-2 text-center">
-        <div className="text-6xl text-zinc-100">GIST.ai</div>
-        <div className="text-2xl text-zinc-300">
+        <div className="text-4xl md:text-6xl text-zinc-100">GIST.ai</div>
+        <div className="text-sm md:text-2xl text-zinc-300">
           Find the Gist any Public Internet Article
         </div>
-        <div className="text-lg text-zinc-200 flex gap-2 items-end italic justify-center">
-          <div className="">Gist</div>
-          <div className="text-zinc-500 text-base">(noun)</div>
+        <div className="text-sm md:text-lg text-zinc-200 flex flex-col md:flex-row gap-2 md:items-end italic justify-center mt-5 md:mt-0">
+          <div className="flex items-end gap-2">
+            <div className="">Gist</div>
+            <div className="text-zinc-500 text-xs md:text-base">(noun)</div>
+          </div>
           <div className="">
             - the substance or essence of a speech or text.
           </div>
@@ -75,32 +77,40 @@ export const ToolPage = (): React.ReactElement => {
       {/* Query */}
       <div className="flex flex-col gap-4 items-center">
         <form onSubmit={handleSubmit(handleFormSubmit)} className="w-full">
-          <div className="flex gap-3 w-full px-20">
+          <div className="flex flex-col lg:flex-row gap-3 w-full md:px-20 items-center md:items-stretch">
             <input
               type="text"
               placeholder="Paste URL Here"
-              className="min-w-64 text-xl text-zinc-950 px-3 py-2 grow"
+              className="min-w-64 text-base md:text-xl text-zinc-950 px-3 py-2 grow w-full"
               {...register("url", { required: true })}
             />
 
-            <button type="submit" className="border border-solid px-5">
+            <button
+              type="submit"
+              className="border border-solid px-5 py-2 max-w-44"
+            >
               Analyze
             </button>
           </div>
         </form>
 
-        <div className="text-sm cursor-pointer" onClick={handleWarningClick}>
+        <div
+          className="text-xs md:text-sm cursor-pointer"
+          onClick={handleWarningClick}
+        >
           * Results may not be accurate or what you expect. Click to Learn More.
         </div>
       </div>
 
       {/* Results */}
       <div className="flex flex-col">
-        <div className="flex py-5 px-2 justify-between border-b border-solid border-zinc-200/40">
-          <div className="text-3xl uppercase text-zinc-200">Results:</div>
+        <div className="flex md:py-5 md:px-2 justify-between border-b border-solid border-zinc-200/40">
+          <div className="text-xl md:text-3xl uppercase text-zinc-200">
+            Results:
+          </div>
         </div>
 
-        <div className="px-5 py-10">
+        <div className="py-5 md:px-5 md:py-10">
           {response ? (
             <div className="flex flex-col gap-8">
               <DataContainer label="title" data={response.title} />
@@ -111,7 +121,7 @@ export const ToolPage = (): React.ReactElement => {
               <DataContainer label="sentiment" data={response.sentiment} />
             </div>
           ) : (
-            <p className="text-center text-2xl monospace uppercase text-zinc-200/70">
+            <p className="text-center text-base md:text-2xl uppercase text-zinc-200/90 md:text-zinc-200/70">
               {error
                 ? "Something went wrong. Please Try Again."
                 : "- Search to get Results -"}
@@ -121,7 +131,7 @@ export const ToolPage = (): React.ReactElement => {
       </div>
 
       {/* Footer */}
-      <div className="flex w-full justify-center items-center p-5 absolute bottom-0 left-0">
+      <div className="flex w-full justify-center items-center p-5 absolute bottom-0 left-0 text-xs md:text-sm">
         <p>
           Powered by{" "}
           <a
@@ -150,9 +160,9 @@ export const ToolPage = (): React.ReactElement => {
       )}
 
       {isWarningShown && (
-        <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center">
-          <div className="flex flex-col gap-5 w-1/2 text-wrap max-h-1/2 text-base text-zinc-900 bg-zinc-200 rounded-xl shadow-xl relative">
-            <div className="flex justify-end px-5 py-5">
+        <div className="absolute top-0 left-0 h-full w-full flex justify-center items-start md:items-center">
+          <div className="flex flex-col gap-0 md:gap-5 w-full md:w-3/4 xl:w-1/2 text-wrap h-screen md:h-auto md:max-h-1/2 text-sm md:text-base text-zinc-900 bg-zinc-200 md:rounded-xl shadow-xl relative">
+            <div className="flex justify-end px-3 py-3 md:px-5 md:py-5">
               <div
                 className="flex w-6 h-6 justify-center items-center font-bold text-zinc-900/70 cursor-pointer hover:text-zinc-900/100 transition-colors duration-300"
                 onClick={handleWarningClose}
@@ -160,10 +170,10 @@ export const ToolPage = (): React.ReactElement => {
                 <XMarkIcon />
               </div>
             </div>
-            <div className="flex flex-col px-20 pb-16 gap-3">
+            <div className="flex flex-col px-5 md:px-20 pb-5 md:pb-16 gap-3">
               <div className="flex items-end gap-2 text-3xl">
                 <ExclamationTriangleIcon className="size-10" />
-                <p>Warning:</p>
+                <p>Warning</p>
               </div>
               <div>
                 Please note that this service provides summaries and analyses of
@@ -216,7 +226,7 @@ export const ToolPage = (): React.ReactElement => {
                   the security of third-party content cannot be guaranteed.
                 </div>
               </div>
-              <div className="text-2xl text-center mt-6">
+              <div className="text-xl md:text-2xl text-center mt-6">
                 Thank you for using this service.
               </div>
             </div>
